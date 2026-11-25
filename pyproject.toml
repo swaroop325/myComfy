@@ -1,0 +1,22 @@
+[project]
+name = "seriesmaker"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = ["boto3>=1.34", "requests>=2.31", "pillow>=10.1"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "moto[dynamodb,sqs,s3,ec2,ssm]>=5", "pytest-mock>=3", "responses>=0.25"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+seriesmaker = ["worker/workflows/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
